@@ -1,5 +1,4 @@
 export const Students = [
-    [
         {
             "ID": "1",
             "Name": "Senpai",
@@ -419,9 +418,9 @@ export const Students = [
             "Info": "The school librarian. \n \n Strongly prefers solitude. \n \n Very rarely expresses emotions."
         },
         {
-            "ID": "20",
-            "Name": "Mai Waifu",
-            "Gender": "0",
+            ID: "20",
+            Name: "Mai Waifu",
+            Gender: "0",
             "Class": "31",
             "Seat": "8",
             "Club": "11",
@@ -2200,5 +2199,4 @@ export const Students = [
             "ScheduleAction": "Nothing",
             "Info": "Trying to look up my information? Don't bother. There is nothing that you need to know about me. You're a client, and I'm a provider. That's all we need to know about each other."
         }
-    ]
 ]
