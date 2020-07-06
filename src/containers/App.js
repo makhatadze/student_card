@@ -3,6 +3,7 @@ import './App.css'
 import StudentList from "../students/StudentList";
 import StudentSearch from "../students/StudentSearch";
 import Scroll from "../components/Scroll";
+import ErrorBoundry from "../components/ErrorBoundry";
 
 
 class App extends Component {
@@ -30,7 +31,7 @@ class App extends Component {
         const filteredStudents = Students.filter(students => {
             return students.name.toLowerCase().includes(studentsSearchField.toLowerCase())
         })
-        if (!Students.legend) {
+        if (!Students.length) {
             return <h1>Loading</h1>
         } else {
             return (
@@ -39,7 +40,9 @@ class App extends Component {
                         <h1 className='f2'>Caucasus University</h1>
                         <StudentSearch searchChange={this.onStudentSearchChange}/>
                         <Scroll>
-                            <StudentList Students={filteredStudents}/>
+                            <ErrorBoundry>
+                                <StudentList Students={filteredStudents}/>
+                            </ErrorBoundry>
                         </Scroll>
                     </div>
                 </div>
