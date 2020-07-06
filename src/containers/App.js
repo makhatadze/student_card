@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import './App.css'
-import StudentList from "./students/StudentList";
-import StudentSearch from "./students/StudentSearch";
-import Scroll from "./components/Scroll";
+import StudentList from "../students/StudentList";
+import StudentSearch from "../students/StudentSearch";
+import Scroll from "../components/Scroll";
 
 
 class App extends Component {
@@ -26,10 +26,11 @@ class App extends Component {
     }
 
     render() {
-        const filteredStudents = this.state.Students.filter(students => {
-            return students.name.toLowerCase().includes(this.state.studentsSearchField.toLowerCase())
+        const {Students, studentsSearchField} = this.state;
+        const filteredStudents = Students.filter(students => {
+            return students.name.toLowerCase().includes(studentsSearchField.toLowerCase())
         })
-        if (this.state.Students.length === 0) {
+        if (!Students.legend) {
             return <h1>Loading</h1>
         } else {
             return (
