@@ -6,7 +6,7 @@ const StudentItem = ({id, name, gender}) => {
             <img alt="Student" src={`https://robohash.org/${id}?200x200`}/>
             <div>
                 <h2>{name}</h2>
-                <p>{gender ? 'Male' : 'female'}</p>
+                <p>{(gender === "1") ? 'female' : 'male'}</p>
             </div>
         </div>
     )
