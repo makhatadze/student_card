@@ -1,12 +1,12 @@
 import React from 'react'
 
-const StudentItem = ({id, name, gender}) => {
+const StudentItem = ({id, name, email}) => {
     return (
-        <div className='bg-light-green dib br3 pa3 ma2 grow'>
+        <div className='student-item bg-light-green dib br3 pa3 ma2 grow'>
             <img alt="Student" src={`https://robohash.org/${id}?200x200`}/>
             <div>
-                <h2>FullName: {name}</h2>
-                <p>Gender: {(gender === "1") ? 'female' : 'male'}</p>
+                <h2>{name}</h2>
+                <p>{email}</p>
             </div>
         </div>
     )

@@ -1,5 +1,6 @@
 import React from "react";
 import StudentItem from "./StundentItem";
+import './student.css'
 
 const StudentList = ({Students}) => {
     return (
@@ -9,9 +10,9 @@ const StudentList = ({Students}) => {
                     return (
                         <StudentItem
                             key={i}
-                            id={Students[i].ID}
-                            name={Students[i].Name}
-                            gender={Students[i].Gender}/>
+                            id={Students[i].id}
+                            name={Students[i].name}
+                            email={Students[i].email}/>
                     )
                 })
             }

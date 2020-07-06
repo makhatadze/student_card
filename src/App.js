@@ -13,13 +13,20 @@ class App extends Component {
         }
     }
 
+    componentDidMount() {
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then(response => response.json())
+            .then(users => this.setState({ Students: users })
+            )
+    }
+
     onStudentSearchChange = (event) => {
         this.setState({studentsSearchField: event.target.value});
     }
 
     render() {
         const filteredStudents = this.state.Students.filter(students => {
-            return students.Name.toLowerCase().includes(this.state.studentsSearchField.toLowerCase())
+            return students.name.toLowerCase().includes(this.state.studentsSearchField.toLowerCase())
         })
         return (
             <div>
