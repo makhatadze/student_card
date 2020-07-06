@@ -1,6 +1,6 @@
 import React, {Component} from "react";
+import './App.css'
 import StudentList from "./students/StudentList";
-import {Students} from "./data/Students";
 import StudentSearch from "./students/StudentSearch";
 
 
@@ -8,7 +8,7 @@ class App extends Component {
     constructor() {
         super();
         this.state = {
-            Students: Students,
+            Students: [],
             studentsSearchField: ''
         }
     }
@@ -24,7 +24,7 @@ class App extends Component {
         return (
             <div>
                 <div className='tc'>
-                    <h1>Caucasus University</h1>
+                    <h1 className='f2'>Caucasus University</h1>
                     <StudentSearch searchChange={this.onStudentSearchChange} />
                     <StudentList Students={filteredStudents}/>
                 </div>
