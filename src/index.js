@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import StudentItem from "./students/StundentItem";
 import * as serviceWorker from './serviceWorker';
+import 'tachyons'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <StudentItem />
+    <StudentItem />
+    <StudentItem />
   </React.StrictMode>,
   document.getElementById('root')
 );
