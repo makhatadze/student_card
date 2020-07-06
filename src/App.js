@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import './App.css'
 import StudentList from "./students/StudentList";
 import StudentSearch from "./students/StudentSearch";
+import Scroll from "./components/Scroll";
 
 
 class App extends Component {
@@ -16,7 +17,7 @@ class App extends Component {
     componentDidMount() {
         fetch('https://jsonplaceholder.typicode.com/users')
             .then(response => response.json())
-            .then(users => this.setState({ Students: users })
+            .then(users => this.setState({Students: users})
             )
     }
 
@@ -28,15 +29,21 @@ class App extends Component {
         const filteredStudents = this.state.Students.filter(students => {
             return students.name.toLowerCase().includes(this.state.studentsSearchField.toLowerCase())
         })
-        return (
-            <div>
-                <div className='tc'>
-                    <h1 className='f2'>Caucasus University</h1>
-                    <StudentSearch searchChange={this.onStudentSearchChange} />
-                    <StudentList Students={filteredStudents}/>
+        if (this.state.Students.length === 0) {
+            return <h1>Loading</h1>
+        } else {
+            return (
+                <div>
+                    <div className='tc'>
+                        <h1 className='f2'>Caucasus University</h1>
+                        <StudentSearch searchChange={this.onStudentSearchChange}/>
+                        <Scroll>
+                            <StudentList Students={filteredStudents}/>
+                        </Scroll>
+                    </div>
                 </div>
-            </div>
-        )
+            )
+        }
     }
 }
 
