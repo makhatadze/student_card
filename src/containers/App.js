@@ -1,51 +1,43 @@
 import React, {Component} from "react";
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import './App.css'
 import StudentList from "../students/StudentList";
 import StudentSearch from "../students/StudentSearch";
 import Scroll from "../components/Scroll";
 import ErrorBoundry from "../components/ErrorBoundry";
 
-import { setStudentsSearchField} from "../actions";
+import {setStudentsSearchField, requestStudents} from "../actions";
 
 const mapStateToProps = state => {
     return {
-        studentsSearchField: state.studentsSearchField
+        studentsSearchField: state.searchStudents.studentsSearchField,
+        students: state.requestStudents.students,
+        isPending: state.requestStudents.isPending,
+        error: state.requestStudents.error
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onStudentSearchChange: (event) => dispatch(setStudentsSearchField(event.target.value))
+        onStudentSearchChange: (event) => dispatch(setStudentsSearchField(event.target.value)),
+        onRequestStudents: () => dispatch(requestStudents())
     }
 }
 
 class App extends Component {
-    constructor() {
-        super();
-        this.state = {
-            Students: []
-        }
-    }
 
     componentDidMount() {
-        fetch('https://jsonplaceholder.typicode.com/users')
-            .then(response => response.json())
-            .then(users => this.setState({Students: users})
-            )
+        this.props.onRequestStudents()
     }
 
     render() {
-        const { Students } = this.state;
-        const { studentsSearchField, onStudentSearchChange } = this.props
-
-        const filteredStudents = Students.filter(students => {
+        const {studentsSearchField, onStudentSearchChange, students, isPending} = this.props
+        const filteredStudents = students.filter(students => {
             return students.name.toLowerCase().includes(studentsSearchField.toLowerCase())
         })
-        if (!Students.length) {
-            return <h1>Loading</h1>
-        } else {
-            return (
+        return isPending ?
+            <h1>Loading</h1> :
+            (
                 <div>
                     <div className='tc'>
                         <h1 className='f2'>Caucasus University</h1>
@@ -58,7 +50,6 @@ class App extends Component {
                     </div>
                 </div>
             )
-        }
     }
 }
 
